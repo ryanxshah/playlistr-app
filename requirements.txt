@@ -1,4 +1,4 @@
 flask
 spotipy
 pandas
-sklearn
+scikit-learn
