@@ -107,8 +107,6 @@ def run_alg():
 
     kmeans.fit(data_normalized)
     ids["group"] = kmeans.predict(data_normalized)
-    ids = ids.to_numpy()
-
     
     dict = defaultdict(list)
     for item in ids.to_numpy():
