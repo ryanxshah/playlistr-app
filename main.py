@@ -13,7 +13,7 @@ app.config["SECRET_KEY"] = "aofl-29ri-sd93-foi2-fin2-f92h-0xo3-42ts-i3nf-dowj-19
 
 CLIENT_ID = "7b2949c814ee42559eca35bf50859edb"
 CLIENT_SECRET = "bf273ba2762b4b04a6ac7a8dcb938102"
-REDIRECT_URI = "http://localhost:5000/callback"
+REDIRECT_URI = "https://playlistr-app-production.up.railway.app/callback"
 SCOPE = "user-library-read, playlist-modify-private, playlist-modify-public"
 
 cache_handler = FlaskSessionCacheHandler(session)
@@ -216,5 +216,5 @@ def get_df(audio_features):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
 
