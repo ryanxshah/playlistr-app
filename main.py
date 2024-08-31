@@ -95,7 +95,6 @@ def ids():
 
 @app.route("/run_alg")
 def run_alg():
-    render_template("loading.html")
     data = get_df(get_song_features(get_ids()))
     ids = data[["id"]]
     data = data.drop(["key", "mode", "time_signature", "id"], axis=1)
@@ -119,17 +118,13 @@ def run_alg():
         else:
             dict[key] = [value]
 
-    for i in range(4):
-        print("DOING THIS")
-        playlist_num = i
-        curr_playlist = sp.user_playlist_create(user=sp.current_user()["id"], name=f"PLAYLISTR {playlist_num + 1}")
+    for num in range(4):
+        curr_playlist = sp.user_playlist_create(user=sp.current_user()["id"], name=f"PLAYLISTR {num + 1}")
 
-        for i in ids:
-            if i[1] == playlist_num:
-                sp.user_playlist_add_tracks(user=sp.current_user()["id"], playlist_id=curr_playlist["id"], tracks=dict[playlist_num])
+        for id in ids:
+            if id[1] == num:
+                sp.user_playlist_add_tracks(user=sp.current_user()["id"], playlist_id=curr_playlist["id"], tracks=dict[num])
 
-
-    
 
 
     return render_template("done.html")
