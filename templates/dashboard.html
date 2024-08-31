@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <title>
+            PLAYLISTR
+        </title>
+
+        <style>
+            body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #24a54b, #45d65d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            }
+
+            .container {
+                background: white;
+                padding: 40px 30px;
+                border-radius: 10px;
+                box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                text-align: center;
+            }
+
+            .title {
+                margin-bottom: 0px;
+            }
+            .subtitle {
+                font-size: 18px;
+                margin-top: 0px;
+            }
+
+            .p1 {
+                color: #666
+            }
+
+            .button {
+                background: linear-gradient(45deg, #24a54b, #45d65d);
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="title">
+                PLAYLISTR
+            </h1>
+            <h2 class="subtitle">
+                Hello, {{name}}
+            </h2>
+            <p class="p1">
+                You have {{num}} liked songs. Would you like to organize them based on similarity? PLAYLISTR will copy your liked songs and move them into new playlists.
+            </p>
+
+            <form action="{{url_for('run_alg')}}">
+                <button type="submit" class="button">
+                    Proceed
+                </button>
+            </form>
+        </div>
+    </body>
+
+
+
+
+
+
+</html>
