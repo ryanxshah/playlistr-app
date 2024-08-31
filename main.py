@@ -6,6 +6,7 @@ from spotipy.cache_handler import FlaskSessionCacheHandler
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
+from collections import defaultdict
 from io import BytesIO
 
 app = Flask(__name__)
@@ -108,7 +109,12 @@ def run_alg():
     ids["group"] = kmeans.predict(data_normalized)
     ids = ids.to_numpy()
 
-    dict = {}
+    
+    dict = defaultdict(list)
+    for item in ids.to_numpy():
+        dict[item[1]].append(item[0])
+
+    """dict = {}
     for item in ids:
         key = item[1]
         value = item[0]
@@ -116,16 +122,12 @@ def run_alg():
         if key in dict:
             dict[key].append(value)
         else:
-            dict[key] = [value]
+            dict[key] = [value]"""
 
-    for num in range(4):
-        curr_playlist = sp.user_playlist_create(user=sp.current_user()["id"], name=f"PLAYLISTR {num + 1}")
-
-        for id in ids:
-            if id[1] == num:
-                sp.user_playlist_add_tracks(user=sp.current_user()["id"], playlist_id=curr_playlist["id"], tracks=dict[num])
-
-
+    user_id = sp.current_user()["id"]
+    for playlist_num in range(4):
+        curr_playlist = sp.user_playlist_create(user=user_id, name=f"PLAYLISTR {playlist_num + 1}")
+        sp.user_playlist_add_tracks(user=user_id, playlist_id=curr_playlist["id"], tracks=dict[playlist_num])
 
     return render_template("done.html")
 
