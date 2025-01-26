@@ -3,4 +3,3 @@ spotipy
 pandas
 scikit-learn
 gunicorn
-collections
